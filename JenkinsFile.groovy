@@ -5,7 +5,7 @@ pipeline {
         stage('Build & Run Test') {
             steps {
                 dir('C:/Users/HungNT/Desktop/seminar_t5/mappingApp/autoTestMappingApp')
-                {bat 'mvn clean test'}
+                {bat 'mvn clean test -o'}
             }
         }
     }
