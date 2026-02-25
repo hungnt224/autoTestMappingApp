@@ -1,5 +1,5 @@
 pipeline {
-    agent { 'automationtest' }
+    agent { label 'automationtest' }
 
     environment {
         PROJECT_PATH = 'C:\\resourcetest'
