@@ -1,5 +1,5 @@
 pipeline {
-    agent { label 'autoTest' }
+    agent { 'automationtest' }
 
     environment {
         PROJECT_PATH = 'C:\\resourcetest'
@@ -7,43 +7,27 @@ pipeline {
 
     stages {
 
-        stage('Prepare') {
+        stage('Checkout Source') {
             steps {
-                echo "Using local automation project at: ${PROJECT_PATH}"
-                dir("${PROJECT_PATH}") {
-                    bat 'mvn -v'
-                }
+                git branch: 'main',
+                    credentialsId: 'github-creds',   // nếu repo private
+                    url: 'https://github.com/hungnt224/autoTestMappingApp.git'
             }
         }
 
-        stage('Run Automation Test') {
+        stage('Build & Run Test') {
             steps {
-                dir("${PROJECT_PATH}") {
-                    bat 'mvn clean test'
-                }
-            }
-        }
-
-        stage('Generate Allure Report') {
-            steps {
-                dir("${PROJECT_PATH}") {
-                    allure includeProperties: false,
-                           jdk: '',
-                           results: [[path: 'target/allure-results']]
-                }
+                bat 'mvn clean test'
             }
         }
     }
 
     post {
         always {
-            echo "Build finished."
-        }
-        success {
-            echo "All tests passed."
-        }
-        failure {
-            echo "Test failed. Check Allure report."
-        }
+            allure(
+                includeProperties: false,
+                jdk: '',
+                results: [[path: 'target/allure-results']]
+            )
     }
 }
