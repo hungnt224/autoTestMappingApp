@@ -1,0 +1,8 @@
+my-automation-project/
+├── pom.xml                     (Chứa Selenium, SikuliX, Gson)
+├── src/main/java/framework/    (Lõi Framework - Có thể tách thành file .jar sau này)
+│   ├── Models.java             (Định nghĩa cấu trúc dữ liệu JSON)
+│   ├── Library.java            (Chứa thư viện lệnh: Selenium, Sikuli)
+│   └── Engine.java             (Bộ đọc JSON và điều phối chạy)
+└── src/test/resources/
+    └── test_suite.json         (File kịch bản do Manual QA viết)

@@ -1,0 +1,28 @@
+[
+  {
+    "name": "TC01: Đăng nhập Web thành công",
+    "steps": [
+      {"action": "web.open", "target": "https://myapp.com/login"},
+      {"action": "web.type", "target": "id:username", "value": "admin"},
+      {"action": "web.click", "target": "id:btnLogin"},
+      {"action": "web.verify", "target": "id:welcome", "expected": "Welcome Admin"}
+    ]
+  },
+  {
+    "name": "TC02: Mở app Desktop Qt và lưu cài đặt",
+    "steps": [
+      {"action": "desktop.click_img", "target": "imgs/btn_settings.png"},
+      {"action": "desktop.verify_img", "target": "imgs/icon_success.png", "expected": "true"}
+    ]
+  },
+  {
+    "name": "Quy trình hỗn hợp Web và App Qt",
+    "steps": [
+      { "step": "Mở web lấy mã", "action": "web.open", "target": "https://internal-tool.com" },
+      { "step": "Lấy text mã", "action": "web.verify_text", "target": "id:otp", "expected": "123456" },
+      { "step": "Click vào App Qt", "action": "desktop.click", "target": "imgs/qt_app_icon.png" },
+      { "step": "Nhập mã vào App", "action": "desktop.type", "target": "imgs/input_field.png", "value": "123456" },
+      { "step": "Verify app hiện thông báo", "action": "desktop.verify_visible", "target": "imgs/success_popup.png", "expected": "true" }
+    ]
+  }
+]

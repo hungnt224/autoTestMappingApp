@@ -1,0 +1,17 @@
+[
+  {
+    "name": "TC01: Web Login",
+    "steps": [
+      {"action": "open", "target": "https://google.com"},
+      {"action": "type", "target": "id:q", "value": "Gemini AI"},
+      {"action": "verify", "target": "id:result", "expected": "Success"}
+    ]
+  },
+  {
+    "name": "TC02: Qt App Test",
+    "steps": [
+      {"action": "click_img", "target": "imgs/btn_save.png"},
+      {"action": "verify_img", "target": "imgs/icon_check.png", "expected": "true"}
+    ]
+  }
+]
